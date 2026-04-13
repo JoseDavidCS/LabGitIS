@@ -17,10 +17,31 @@ namespace backend_lab_C01731.Controllers
         }
 
         [HttpGet]
-        public List<CountryModel> Get() 
+        public List<CountryModel> Get()
         {
             var paises = countryService.GetCountries();
             return paises;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<bool>> CreateCountry([FromBody] CountryModel country)
+        {
+            if (country == null)
+            {
+                return BadRequest();
+            }
+
+            var result = countryService.CreateCountry(country);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
     }
 }
+
