@@ -72,6 +72,7 @@ import axios from "axios";
                 })
                 .then(function(response){
                     console.log(response);
+                    alert("País creado correctamente");
                     window.location.href = "/"
                 })
                 .catch(function(error){
